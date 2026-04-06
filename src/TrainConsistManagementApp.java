@@ -149,5 +149,41 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC12 END =================
+        // ================= UC13 START =================
+
+// Prepare data (reuse Bogie list or create new)
+        List<Bogie> testBogies = new ArrayList<>();
+
+        for (int i = 0; i < 10000; i++) {
+            testBogies.add(new Bogie("Sleeper", 72));
+            testBogies.add(new Bogie("AC Chair", 60));
+        }
+
+// 🔹 Loop-based filtering
+        long startLoop = System.nanoTime();
+
+        List<Bogie> loopResult = new ArrayList<>();
+        for (Bogie b : testBogies) {
+            if (b.capacity > 60) {
+                loopResult.add(b);
+            }
+        }
+
+        long endLoop = System.nanoTime();
+
+// 🔹 Stream-based filtering
+        long startStream = System.nanoTime();
+
+        List<Bogie> streamResult = testBogies.stream()
+                .filter(b -> b.capacity > 60)
+                .toList();
+
+        long endStream = System.nanoTime();
+
+// Display time taken
+        System.out.println("\nLoop Time: " + (endLoop - startLoop) + " ns");
+        System.out.println("Stream Time: " + (endStream - startStream) + " ns");
+
+// ================= UC13 END =================
     }
 }
