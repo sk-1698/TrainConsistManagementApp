@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class TrainConsistManagementApp {
     static class Bogie {
@@ -37,5 +39,20 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC7 END =================
+        // ================= UC8 START =================
+
+// Filter bogies with capacity > 60
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+// Display filtered bogies
+        System.out.println("\nFiltered Bogies (capacity > 60):");
+
+        for (Bogie b : filteredBogies) {
+            System.out.println(b);
+        }
+
+// ================= UC8 END =================
     }
 }
