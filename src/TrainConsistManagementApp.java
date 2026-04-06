@@ -5,18 +5,25 @@ import java.util.Arrays;
 public class TrainConsistManagementApp {
 
     public static void main(String[] args)  {
-        // ================= UC17 START =================
 
-// Array of bogie names
-        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "Cargo", "Guard"};
+        String[] bogieIdsArr = {"B1", "B2", "B3", "B4", "B5"};
 
-// Sort using Arrays.sort()
-        Arrays.sort(bogieNames);
 
-// Display sorted names
-        System.out.println("\nSorted Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        String searchKey = "B3";
 
-// ================= UC17 END =================
-    }
-}
+        boolean found = false;
+
+        for (String id : bogieIdsArr) {
+            if (id.equals(searchKey)) {
+                found = true;
+                break;
+            }
+        }
+
+
+        if (found) {
+            System.out.println("\nBogie ID " + searchKey + " found.");
+        } else {
+            System.out.println("\nBogie ID " + searchKey + " not found.");
+        }
+
