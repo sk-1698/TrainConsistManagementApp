@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
+
 
 
 public class TrainConsistManagementApp {
@@ -54,5 +56,19 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC8 END =================
+        // ================= UC9 START =================
+
+// Group bogies by type (using name as category)
+        Map<String, List<Bogie>> groupedBogies = bogies.stream()
+                .collect(Collectors.groupingBy(b -> b.name));
+
+// Display grouped bogies
+        System.out.println("\nGrouped Bogies:");
+
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+
+// ================= UC9 END =================
     }
 }
