@@ -5,25 +5,41 @@ import java.util.Arrays;
 public class TrainConsistManagementApp {
 
     public static void main(String[] args)  {
+        // ================= UC19 START =================
 
-        String[] bogieIdsArr = {"B1", "B2", "B3", "B4", "B5"};
+// Sorted array of bogie IDs
+        String[] sortedIds = {"B1", "B2", "B3", "B4", "B5"};
 
+// Search key
+        String key = "B3";
 
-        String searchKey = "B3";
+        int low = 0;
+        int high = sortedIds.length - 1;
+        boolean foundBinary = false;
 
-        boolean found = false;
+        while (low <= high) {
+            int mid = (low + high) / 2;
 
-        for (String id : bogieIdsArr) {
-            if (id.equals(searchKey)) {
-                found = true;
+            int compare = key.compareTo(sortedIds[mid]);
+
+            if (compare == 0) {
+                foundBinary = true;
                 break;
+            } else if (compare > 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
-
-        if (found) {
-            System.out.println("\nBogie ID " + searchKey + " found.");
+// Display result
+        if (foundBinary) {
+            System.out.println("\n(BINARY SEARCH) Bogie ID " + key + " found.");
         } else {
-            System.out.println("\nBogie ID " + searchKey + " not found.");
+            System.out.println("\n(BINARY SEARCH) Bogie ID " + key + " not found.");
         }
+
+// ================= UC19 END =================
+    }
+}
 
