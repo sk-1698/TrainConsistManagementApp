@@ -11,9 +11,14 @@ class InvalidCapacityException extends Exception {
         super(message);
     }
 }
+class CargoSafetyException extends RuntimeException {
+    CargoSafetyException(String message) {
+        super(message);
+    }
+}
 
 public class TrainConsistManagementApp {
-    class Bogie {
+    static class Bogie {
         String name;
         int capacity;
 
@@ -39,7 +44,7 @@ public class TrainConsistManagementApp {
             this.cargo = cargo;
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCapacityException {
         // ================= UC7 START =================
 
 // Create list of bogies
@@ -207,5 +212,25 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC14 END =================
+        // ================= UC15 START =================
+
+        String type = "Rectangular";
+        String cargo = "Petroleum"; // unsafe case
+
+        try {
+            // Validate cargo assignment
+            if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
+                throw new CargoSafetyException("Petroleum not allowed in Rectangular bogie");
+            }
+
+            System.out.println("\nCargo assigned safely");
+
+        } catch (CargoSafetyException e) {
+            System.out.println("\nError: " + e.getMessage());
+        } finally {
+            System.out.println("Cargo assignment process completed.");
+        }
+
+// ================= UC15 END =================
     }
 }
