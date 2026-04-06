@@ -23,6 +23,15 @@ public class TrainConsistManagementApp {
             return name + " -> " + capacity;
         }
     }
+    static class GoodsBogie {
+        String type;
+        String cargo;
+
+        GoodsBogie(String type, String cargo) {
+            this.type = type;
+            this.cargo = cargo;
+        }
+    }
     public static void main(String[] args) {
         // ================= UC7 START =================
 
@@ -116,5 +125,29 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC11 END =================
+        // ================= UC12 START =================
+
+// Create goods bogies
+        List<GoodsBogie> goods = new ArrayList<>();
+
+        goods.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goods.add(new GoodsBogie("Rectangular", "Coal"));
+        goods.add(new GoodsBogie("Cylindrical", "Petroleum")); // valid
+// goods.add(new GoodsBogie("Cylindrical", "Water")); // try invalid
+
+// Safety check
+        boolean isSafe = goods.stream()
+                .allMatch(g ->
+                        !g.type.equals("Cylindrical") || g.cargo.equals("Petroleum")
+                );
+
+// Display result
+        if (isSafe) {
+            System.out.println("\nTrain is SAFETY COMPLIANT");
+        } else {
+            System.out.println("\nTrain is NOT SAFE");
+        }
+
+// ================= UC12 END =================
     }
 }
