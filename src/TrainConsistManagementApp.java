@@ -70,5 +70,16 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC9 END =================
+        // ================= UC10 START =================
+
+// Calculate total seating capacity
+        int totalCapacity = bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+
+// Display total capacity
+        System.out.println("\nTotal Seating Capacity: " + totalCapacity);
+
+// ================= UC10 END =================
     }
 }
