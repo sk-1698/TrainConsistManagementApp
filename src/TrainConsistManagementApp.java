@@ -232,5 +232,31 @@ public class TrainConsistManagementApp {
         }
 
 // ================= UC15 END =================
+        // ================= UC16 START =================
+
+// Array of passenger capacities
+        int[] capacities = {72, 60, 40, 80, 55};
+
+// Bubble Sort
+        for (int i = 0; i < capacities.length - 1; i++) {
+            for (int j = 0; j < capacities.length - i - 1; j++) {
+
+                if (capacities[j] > capacities[j + 1]) {
+                    // swap
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+// Display sorted capacities
+        System.out.println("\nSorted Passenger Capacities:");
+
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+// ================= UC16 END =================
     }
 }
