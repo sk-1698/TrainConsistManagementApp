@@ -1,45 +1,48 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-
-
+import java.util.List;
 public class TrainConsistManagementApp {
 
-    public static void main(String[] args)  {
-        // ================= UC19 START =================
+    static class Bogie {
+        String name;
+        int capacity;
 
-// Sorted array of bogie IDs
-        String[] sortedIds = {"B1", "B2", "B3", "B4", "B5"};
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
 
-// Search key
-        String key = "B3";
+    public static void main(String[] args) {
 
-        int low = 0;
-        int high = sortedIds.length - 1;
-        boolean foundBinary = false;
+        // ================= UC20 START =================
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
+        List<Bogie> bogies = new ArrayList<>();
 
-            int compare = key.compareTo(sortedIds[mid]);
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
 
-            if (compare == 0) {
-                foundBinary = true;
+        if (bogies == null || bogies.isEmpty()) {
+            throw new IllegalStateException("Cannot perform search: No bogies available in the train");
+        }
+
+        String searchId = "Sleeper";
+        boolean foundUC20 = false;
+
+        for (Bogie b : bogies) {
+            if (b.name.equals(searchId)) {
+                foundUC20 = true;
                 break;
-            } else if (compare > 0) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
             }
         }
 
-// Display result
-        if (foundBinary) {
-            System.out.println("\n(BINARY SEARCH) Bogie ID " + key + " found.");
+        if (foundUC20) {
+            System.out.println("(UC20) Bogie found: " + searchId);
         } else {
-            System.out.println("\n(BINARY SEARCH) Bogie ID " + key + " not found.");
+            System.out.println("(UC20) Bogie not found: " + searchId);
         }
 
-// ================= UC19 END =================
+        // ================= UC20 END =================
     }
 }
-
