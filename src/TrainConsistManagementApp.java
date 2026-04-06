@@ -6,14 +6,21 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.Scanner;
-
+class InvalidCapacityException extends Exception {
+    InvalidCapacityException(String message) {
+        super(message);
+    }
+}
 
 public class TrainConsistManagementApp {
-    static class Bogie {
+    class Bogie {
         String name;
         int capacity;
 
-        Bogie(String name, int capacity) {
+        Bogie(String name, int capacity) throws InvalidCapacityException {
+            if (capacity <= 0) {
+                throw new InvalidCapacityException("Capacity must be greater than 0");
+            }
             this.name = name;
             this.capacity = capacity;
         }
@@ -185,5 +192,20 @@ public class TrainConsistManagementApp {
         System.out.println("Stream Time: " + (endStream - startStream) + " ns");
 
 // ================= UC13 END =================
+        // ================= UC14 START =================
+
+        try {
+            bogies.add(new Bogie("Sleeper", 72));
+            bogies.add(new Bogie("AC Chair", 60));
+            bogies.add(new Bogie("First Class", 40));
+
+            // Invalid example
+            bogies.add(new Bogie("Invalid", -10));
+
+        } catch (InvalidCapacityException e) {
+            System.out.println("\nError: " + e.getMessage());
+        }
+
+// ================= UC14 END =================
     }
 }
